@@ -1,0 +1,22 @@
+{
+  "name": "imagine-graph",
+  "version": "1.0.0",
+  "description": "A data visualization package for creating interactive charts with D3.js",
+  "main": "./imaginegraph.js",
+  "dependencies": {
+    "canvas": "^2.11.0",
+    "chart.js": "^4.2.1",
+    "d3": "^5.16.0",
+    "svg-canvas": "^1.0.2"
+  },
+  "keywords": [
+    "data",
+    "visualization",
+    "charts",
+    "graphs",
+    "maps",
+    "d3"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
