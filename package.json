@@ -1,6 +1,6 @@
 {
   "name": "imagine-graph",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A data visualization package for creating interactive charts with D3.js",
   "main": "./imaginegraph.js",
   "dependencies": {
