@@ -17,6 +17,21 @@
     "maps",
     "d3"
   ],
-  "author": "pariazar",
+  "author": {
+    "name": "pariazar",
+    "email": "hamedpa19@gmail.com",
+    "url": "https://github.com/pariazar"
+  },
+  "engines": {
+    "node": ">=4.0"
+  },
+  "homepage": "https://github.com/pariazar/imagine-graph",
+  "bugs": {
+    "url": "https://github.com/pariazar/imagine-graph/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pariazar/imagine-graph"
+  },
   "license": "MIT"
 }
