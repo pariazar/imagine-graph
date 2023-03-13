@@ -1,4 +1,6 @@
-const { createBarChart, createLineChart, createBubbleChart, createPieChart } = require('./imaginegraph');
+const { createBarChart, createLineChart,
+    createBubbleChart, createPieChart,
+    createPolarAreaChart, createScatterChart } = require('./imaginegraph');
 
 
 // const data = [
@@ -26,13 +28,20 @@ function generateRandomData() {
     // ==================================
     let data = generateRandomData();
 
+    data = [
+        { label: 'A', value: 10 },
+        { label: 'B', value: 20 },
+        { label: 'C', value: 30 },
+        { label: 'D', value: 15 },
+    ];
+
     let options = {
-        title: '100 Random Data Points',
-        label: '100 Random Data Points',
+        title: 'Data Points',
+        label: 'Data Points',
         width: 800,
         height: 600,
-        backgroundColor: '#ffffff',
-        borderColor: '#75a485',
+        backgroundDataColor: ['#FF6384', '#36A2EB', '#FFCE56', '#cc65fe', '#445ce3'],
+        borderColor: '#000000',
         titleColor: '#75a485',
         labelColor: '#75a485',
         borderWidth: 2
@@ -121,6 +130,53 @@ function generateRandomData() {
     //for doughnut chart only set type doughnut
     options.type = 'doughnut'
     await createPieChart(data, options, './images/doughnutChart.png');
+
+    // ==================================
+
+    //=========== Polar Area chart =============
+    // ==================================
+
+    data = [
+        { label: 'Category A', value: 30 },
+        { label: 'Category B', value: 50 },
+        { label: 'Category C', value: 20 },
+    ];
+
+    options = {
+        title: 'Polar Area Chart Example',
+        width: 800,
+        height: 600,
+        backgroundDataColor: ['#FF6384', '#36A2EB', '#FFCE56', '#cc65fe', '#445ce3'],
+        borderColor: '#75a485',
+        titleColor: '#75a485',
+        labelColor: '#75a485',
+        borderWidth: 2,
+        titleFontSize: 24,
+        labelFontSize: 18,
+        legendPosition: 'bottom',
+    };
+
+    await createPolarAreaChart(data, options, './images/polarAreaChart.png');
+
+    // ==================================
+
+    //=========== Scatter chart =============
+    // ==================================
+    data = [{
+        x: -10,
+        y: 0
+    }, {
+        x: 0,
+        y: 10
+    }, {
+        x: 10,
+        y: 5
+    }, {
+        x: 0.5,
+        y: 5.5
+    }];
+
+    await createScatterChart(data, options, './images/scatterChart.png');
 
     // ==================================
 

@@ -1,5 +1,5 @@
 # imagine-graph
-<p class="align-center">
+<p align="center">
 <img src="./images/cover.png"/>
 </p>
 This npm package offers a user-friendly way to create interactive charts, graphs, and maps from various data sources. With its intuitive interface and powerful tools, users can easily generate stunning visualizations to better understand their data and communicate insights to others.
@@ -53,8 +53,10 @@ createBarChart(data, options, './mychart.png')
     });
 
 ```
+<p align="center">
+<img src="./images/barChart.png" height="400" width="auto"/>
+</p>
 or can access buffer by calling following method and don't pass path
-
 ```javascript
 // To get the image buffer
 const imageBuffer = await createBarChart(data, options);
