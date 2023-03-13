@@ -3,7 +3,7 @@
 
 [![npm](https://img.shields.io/npm/v/imagine-graph.svg?style=flat-square)](https://www.npmjs.com/package/imagine-graph)
 ![building workflow](https://github.com/pariazar/imagine-graph/actions/workflows/nodejs.yml/badge.svg)
-<a href="https://codeclimate.com/github/pariazar/imagine-graph/maintainability"><img src="https://api.codeclimate.com/v1/badges/a5c9b90b523374d106cd/maintainability" /></a>
+[![Maintainability](https://api.codeclimate.com/v1/badges/5e1d71252ff1ec942a61/maintainability)](https://codeclimate.com/github/pariazar/imagine-graph/maintainability)
 [![GitHub issues](https://img.shields.io/github/issues/pariazar/imagine-graph)](https://github.com/pariazar/imagine-graph/issues)
 [![License: MIT](https://img.shields.io/badge/License-MIT-0298c3.svg)](https://opensource.org/licenses/MIT)
 
