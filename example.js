@@ -1,4 +1,4 @@
-const { createBarChart, createLineChart, createBubbleChart } = require('./imaginegraph');
+const { createBarChart, createLineChart, createBubbleChart, createPieChart } = require('./imaginegraph');
 
 
 // const data = [
@@ -70,6 +70,8 @@ function generateRandomData() {
 
     // ==================================
 
+    //=========== Bubble chart =============
+    // ==================================
     data = [
         { label: 'A', x: 15, y: 20, r: 15 },
         { label: 'B', x: 20, y: 30, r: 20 },
@@ -89,6 +91,38 @@ function generateRandomData() {
     };
 
     await createBubbleChart(data, options, './images/bubbleChart.png');
+
+    // ==================================
+
+
+    //=========== Pie chart =============
+    // ==================================
+    data = [
+        { label: 'A', value: 10 },
+        { label: 'B', value: 20 },
+        { label: 'C', value: 30 },
+        { label: 'D', value: 15 }
+    ];
+
+    options = {
+        label: 'My Pie Chart',
+        width: 800,
+        height: 600,
+        backgroundDataColor: ['#FF6384', '#36A2EB', '#FFCE56', '#cc65fe', '#445ce3'],
+        backgroundColor: '#ffffff',
+        borderColor: '#75a485',
+        titleColor: '#75a485',
+        labelColor: '#75a485',
+        borderWidth: 2,
+        labelFontSize: 16
+    };
+    await createPieChart(data, options, './images/pieChart.png');
+
+    //for doughnut chart only set type doughnut
+    options.type = 'doughnut'
+    await createPieChart(data, options, './images/doughnutChart.png');
+
+    // ==================================
 
 })()
 
