@@ -3,11 +3,9 @@ const { createCanvas, loadImage } = require('canvas');
 const fs = require('fs');
 
 async function createBarChart(data, options = {}, outputPath = null) {
-    // Create a new Chart.js chart on a virtual canvas
-    const canvas = createCanvas(options.width || 600, options.height || 400);
-    const ctx = canvas.getContext('2d');
+    const canvas = initCanvas(options);
 
-    const chart = new Chart(ctx, {
+    const chart = new Chart(canvas[0], {
         type: 'bar',
         data: {
             labels: data.map(d => d.label),
@@ -33,17 +31,15 @@ async function createBarChart(data, options = {}, outputPath = null) {
         }
     });
 
-    const imageBuffer = await makeChartReady(canvas, options, outputPath);
+    const imageBuffer = await makeChartReady(canvas[1], options, outputPath);
 
     // Otherwise, return the image buffer
     return imageBuffer;
 }
 
 async function createLineChart(data, options = {}, outputPath = null) {
-    // Create a new Chart.js chart on a virtual canvas
-    const canvas = createCanvas(options.width || 600, options.height || 400);
-    const ctx = canvas.getContext('2d');
-    const chart = new Chart(ctx, {
+    const canvas = initCanvas(options);
+    const chart = new Chart(canvas[0], {
         type: 'line',
         data: {
             labels: data.map(d => d.label),
@@ -78,17 +74,15 @@ async function createLineChart(data, options = {}, outputPath = null) {
         }
     });
 
-    const imageBuffer = await makeChartReady(canvas, options, outputPath);
+    const imageBuffer = await makeChartReady(canvas[1], options, outputPath);
 
     // Otherwise, return the image buffer
     return imageBuffer;
 }
 
 async function createBubbleChart(data, options = {}, outputPath = null) {
-    // Create a new Chart.js chart on a virtual canvas
-    const canvas = createCanvas(options.width || 600, options.height || 400);
-    const ctx = canvas.getContext('2d');
-    const chart = new Chart(ctx, {
+    const canvas = initCanvas(options);
+    const chart = new Chart(canvas[0], {
         type: 'bubble',
         data: {
             datasets: [{
@@ -113,17 +107,15 @@ async function createBubbleChart(data, options = {}, outputPath = null) {
         }
     });
 
-    const imageBuffer = await makeChartReady(canvas, options, outputPath);
+    const imageBuffer = await makeChartReady(canvas[1], options, outputPath);
 
     // Otherwise, return the image buffer
     return imageBuffer;
 }
 
 async function createPieChart(data, options = {}, outputPath = null) {
-    // Create a new Chart.js chart on a virtual canvas
-    const canvas = createCanvas(options.width || 600, options.height || 400);
-    const ctx = canvas.getContext('2d');
-    const chart = new Chart(ctx, {
+    const canvas = initCanvas(options);
+    const chart = new Chart(canvas[0], {
         type: options.type || 'pie',
         data: {
             labels: data.map(d => d.label),
@@ -153,17 +145,16 @@ async function createPieChart(data, options = {}, outputPath = null) {
     });
 
 
-    const imageBuffer = await makeChartReady(canvas, options, outputPath);
+    const imageBuffer = await makeChartReady(canvas[1], options, outputPath);
 
     // Otherwise, return the image buffer
     return imageBuffer;
 }
 
 async function createPolarAreaChart(data, options = {}, outputPath = null) {
-    // Create a new Chart.js chart on a virtual canvas
-    const canvas = createCanvas(options.width || 600, options.height || 400);
-    const ctx = canvas.getContext('2d');
-    const chart = new Chart(ctx, {
+    const canvas = initCanvas(options);
+
+    const chart = new Chart(canvas[0], {
         type: 'polarArea',
         data: {
             labels: data.map(d => d.label),
@@ -195,17 +186,15 @@ async function createPolarAreaChart(data, options = {}, outputPath = null) {
         }
     });
 
-    const imageBuffer = await makeChartReady(canvas, options, outputPath);
+    const imageBuffer = await makeChartReady(canvas[1], options, outputPath);
 
     // Otherwise, return the image buffer
     return imageBuffer;
 }
 
 async function createRadarChart(data, options = {}, outputPath = null) {
-    // Create a new Chart.js chart on a virtual canvas
-    const canvas = createCanvas(options.width || 600, options.height || 400);
-    const ctx = canvas.getContext('2d');
-    const chart = new Chart(ctx, {
+    const canvas = initCanvas(options);
+    const chart = new Chart(canvas[0], {
         type: 'radar',
         data: {
             labels: data.labels,
@@ -232,17 +221,15 @@ async function createRadarChart(data, options = {}, outputPath = null) {
         }
     });
 
-    const imageBuffer = await makeChartReady(canvas, options, outputPath);
+    const imageBuffer = await makeChartReady(canvas[1], options, outputPath);
 
     // Otherwise, return the image buffer
     return imageBuffer;
 }
 
 const createScatterChart = async (data, options, outputPath) => {
-    const canvas = createCanvas(options.width || 600, options.height || 400);
-    const ctx = canvas.getContext('2d');
-
-    const scatterChart = new Chart(ctx, {
+    const canvas = initCanvas(options);
+    const scatterChart = new Chart(canvas[0], {
         type: 'scatter',
         data: {
             datasets: [{
@@ -255,36 +242,6 @@ const createScatterChart = async (data, options, outputPath) => {
         options: {
             responsive: false,
             maintainAspectRatio: false,
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        fontColor: options.labelColor
-                    },
-                    gridLines: {
-                        color: options.gridColor
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: options.xLabel,
-                        fontColor: options.labelColor
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        fontColor: options.labelColor
-                    },
-                    gridLines: {
-                        color: options.gridColor
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: options.yLabel,
-                        fontColor: options.labelColor
-                    }
-                }]
-            },
             title: {
                 display: true,
                 text: options.title,
@@ -298,7 +255,7 @@ const createScatterChart = async (data, options, outputPath) => {
             }
         }
     });
-    const imageBuffer = await makeChartReady(canvas, options, outputPath);
+    const imageBuffer = await makeChartReady(canvas[1], options, outputPath);
     return imageBuffer;
 }
 
@@ -318,6 +275,13 @@ const makeChartReady = async (canvas, options, outputPath) => {
         return outputPath;
     }
     return imageBuffer;
+}
+
+const initCanvas = (options) => {
+    // Create a new Chart.js chart on a virtual canvas
+    const canvas = createCanvas(options.width || 600, options.height || 400);
+    const ctx = canvas.getContext('2d');
+    return [ctx, canvas];
 }
 
 module.exports = {

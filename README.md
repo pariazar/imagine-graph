@@ -1,4 +1,13 @@
 # imagine-graph
+<div style="display: flex;">
+
+[![npm](https://img.shields.io/npm/v/imagine-graph.svg?style=flat-square)](https://www.npmjs.com/package/imagine-graph)
+![building workflow](https://github.com/pariazar/imagine-graph/actions/workflows/nodejs.yml/badge.svg)
+<a href="https://codeclimate.com/github/pariazar/imagine-graph/maintainability"><img src="https://api.codeclimate.com/v1/badges/a5c9b90b523374d106cd/maintainability" /></a>
+[![GitHub issues](https://img.shields.io/github/issues/pariazar/imagine-graph)](https://github.com/pariazar/imagine-graph/issues)
+[![License: MIT](https://img.shields.io/badge/License-MIT-0298c3.svg)](https://opensource.org/licenses/MIT)
+
+</div>
 <p align="center">
 <img src="./images/cover.png"/>
 </p>
@@ -220,3 +229,21 @@ const imageBuffer = await createScatterChart(data, options);
 console.log(imageBuffer);
 // <Buffer 89 50 4e 47 0d 0a 1a 0a 00 00 00 0d 49 48 44 52 00 00 03 20 00 00 02 58 08 06 00 00 00 9a 76 82 70 00 00 00 06 62 4b 47 44 00 ff 00 ff 00 ff a0 bd a7 ... 26337 more bytes>
 ```
+
+## Support
+  - [Bug Reports](https://github.com/pariazar/imagine-graph/issues/)
+
+## Contributors
+<p>
+Pull requests are always welcome! Please base pull requests against the main branch and follow the contributing guide.
+
+  - [Contributors](https://github.com/pariazar/imagine-graph/blob/main/CONTRIBUTING.md)
+
+
+if your pull requests makes documentation changes, please update readme file.
+</p>
+
+## License
+
+This project is licensed under the terms of the
+MIT license
