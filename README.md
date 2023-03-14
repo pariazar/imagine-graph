@@ -14,10 +14,6 @@
 This npm package offers a user-friendly way to create interactive charts, graphs, and maps from various data sources. With its intuitive interface and powerful tools, users can easily generate stunning visualizations to better understand their data and communicate insights to others.
 </br>
 
-
-
-To use the chart functions, you first need to install the npm package and import the relevant function(s) into your project. Here's an example of how to use the createBarChart function:
-
 ### Install the package:
 
 ```bash
@@ -29,6 +25,8 @@ npm install imagine-graph
 <p align="center">
 <img src="./images/barChart.png" height="400" width="auto"/>
 </p>
+To use the chart functions, you first need to install the npm package and import the relevant function(s) into your project. Here's an example of how to use the createBarChart function:
+</br>
 Import the createBarChart function into your project:
 
 ```javascript
@@ -124,6 +122,70 @@ console.log(imageBuffer);
 // <Buffer 89 50 4e 47 0d 0a 1a 0a 00 00 00 0d 49 48 44 52 00 00 03 20 00 00 02 58 08 06 00 00 00 9a 76 82 70 00 00 00 06 62 4b 47 44 00 ff 00 ff 00 ff a0 bd a7 ... 36691 more bytes>
 ```
 
+<hr>
+
+## Bubble Chart
+<p align="center">
+<img src="./images/bubbleChart.png" height="400" width="auto"/>
+</p>
+
+The createBubbleChart function allows you to create an interactive bubble chart from a given dataset. The chart can be customized with various options to match your needs.
+</br>
+To use the <strong>createBubbleChart</strong> function, you need to first import it from the imagine-graph package:
+
+```javascript
+const { createBubbleChart } = require('imagine-graph');
+```
+
+Then, you can call the createBubbleChart function with your data and options:
+
+```javascript
+const data = [
+    { x: 10, y: 20, r: 5, label: 'A' },
+    { x: 20, y: 30, r: 10, label: 'B' },
+    { x: 30, y: 10, r: 15, label: 'C' },
+    { x: 15, y: 25, r: 8, label: 'D' },
+];
+
+const options = {
+    title: 'My Bubble Chart',
+    width: 600,
+    height: 400,
+    backgroundColor: '#ffffff',
+    borderColor: '#75a485',
+    titleColor: '#75a485',
+    labelColor: '#75a485',
+    borderWidth: 2,
+    tooltip: function(d) {
+        return `(${d.x}, ${d.y}): ${d.r}`;
+    },
+    xLabel: 'X Axis Label',
+    yLabel: 'Y Axis Label',
+    xTicks: 10,
+    yTicks: 5,
+    xTickCount: 5,
+    yTickCount: 5,
+};
+
+createBubbleChart(data, options, './mychart.png')
+    .then(filePath => {
+        console.log(`Chart saved to ${filePath}`);
+    })
+    .catch(error => {
+        console.error('Error creating chart:', error);
+    });
+
+```
+
+The path argument is the path where the chart image will be saved.
+</br>
+Alternatively, you can access the image buffer by calling the createBubbleChart function without the path argument:
+
+```javascript
+const imageBuffer = await createBubbleChart(data, options);
+console.log(imageBuffer);
+// <Buffer ...>
+```
 <hr>
 
 ## Pie Chart
