@@ -233,10 +233,10 @@ const createScatterChart = async (data, options, outputPath) => {
         type: 'scatter',
         data: {
             datasets: [{
-                label: options.title,
+                label: options?.title,
                 data: data,
-                backgroundColor: options.pointColor,
-                borderColor: options.borderColor
+                backgroundColor: options?.pointColor,
+                borderColor: options?.borderColor
             }]
         },
         options: {
@@ -244,13 +244,13 @@ const createScatterChart = async (data, options, outputPath) => {
             maintainAspectRatio: false,
             title: {
                 display: true,
-                text: options.title,
-                fontColor: options.titleColor,
+                text: options?.title,
+                fontColor: options?.titleColor,
                 fontSize: 18
             },
             legend: {
                 labels: {
-                    fontColor: options.labelColor
+                    fontColor: options?.labelColor
                 }
             }
         }
@@ -263,7 +263,7 @@ const makeChartReady = async (canvas, options, outputPath) => {
     // Convert the chart canvas to an image buffer
     const imageCanvas = createCanvas(canvas.width, canvas.height);
     const imageCtx = imageCanvas.getContext('2d');
-    imageCtx.fillStyle = options.backgroundColor || '#ffffff'; // Set background color
+    imageCtx.fillStyle = options?.backgroundColor || '#ffffff'; // Set background color
     imageCtx.fillRect(0, 0, imageCanvas.width, imageCanvas.height); // Fill the background
     const chartImage = await loadImage(canvas.toDataURL());
     imageCtx.drawImage(chartImage, 0, 0);
@@ -279,7 +279,7 @@ const makeChartReady = async (canvas, options, outputPath) => {
 
 const initCanvas = (options) => {
     // Create a new Chart.js chart on a virtual canvas
-    const canvas = createCanvas(options.width || 600, options.height || 400);
+    const canvas = createCanvas(options?.width || 600, options?.height || 400);
     const ctx = canvas.getContext('2d');
     return [ctx, canvas];
 }
