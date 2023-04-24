@@ -66,7 +66,6 @@ function generateRandomData() {
         backgroundColor: '#ffffff',
         borderColor: '#75a485',
         titleColor: '#75a485',
-        labelColor: '#75a485',
         borderWidth: 2,
         legend: true,
         labelColor: '#000000',
