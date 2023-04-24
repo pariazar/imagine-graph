@@ -8,6 +8,24 @@ const initCanvas = (options) => {
     return [ctx, canvas];
 }
 
+const makeChartReady = async (canvas, options, outputPath) => {
+    // Convert the chart canvas to an image buffer
+    const imageCanvas = createCanvas(canvas.width, canvas.height);
+    const imageCtx = imageCanvas.getContext('2d');
+    imageCtx.fillStyle = options?.backgroundColor || '#ffffff'; // Set background color
+    imageCtx.fillRect(0, 0, imageCanvas.width, imageCanvas.height); // Fill the background
+    const chartImage = await loadImage(canvas.toDataURL());
+    imageCtx.drawImage(chartImage, 0, 0);
+    const imageBuffer = imageCanvas.toBuffer('image/png');
+
+    // Save the image to a file if an output path is specified
+    if (outputPath) {
+        fs.writeFileSync(outputPath, imageBuffer);
+        return outputPath;
+    }
+    return imageBuffer;
+}
+
 async function createBarChart(data, options = {}, outputPath = null) {
     const canvas = initCanvas(options);
 
@@ -261,24 +279,6 @@ const createScatterChart = async (data, options, outputPath) => {
     //     }
     // });
     const imageBuffer = await makeChartReady(canvas[1], options, outputPath);
-    return imageBuffer;
-}
-
-const makeChartReady = async (canvas, options, outputPath) => {
-    // Convert the chart canvas to an image buffer
-    const imageCanvas = createCanvas(canvas.width, canvas.height);
-    const imageCtx = imageCanvas.getContext('2d');
-    imageCtx.fillStyle = options?.backgroundColor || '#ffffff'; // Set background color
-    imageCtx.fillRect(0, 0, imageCanvas.width, imageCanvas.height); // Fill the background
-    const chartImage = await loadImage(canvas.toDataURL());
-    imageCtx.drawImage(chartImage, 0, 0);
-    const imageBuffer = imageCanvas.toBuffer('image/png');
-
-    // Save the image to a file if an output path is specified
-    if (outputPath) {
-        fs.writeFileSync(outputPath, imageBuffer);
-        return outputPath;
-    }
     return imageBuffer;
 }
 
