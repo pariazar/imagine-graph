@@ -2,6 +2,13 @@ const { Chart } = require('chart.js/auto');
 const { createCanvas, loadImage } = require('canvas');
 const fs = require('fs');
 
+const initCanvas = (options) => {
+    // Create a new Chart.js chart on a virtual canvas
+    const canvas = createCanvas(options?.width || 600, options?.height || 400);
+    const ctx = canvas.getContext('2d');
+    return [ctx, canvas];
+}
+
 async function createBarChart(data, options = {}, outputPath = null) {
     const canvas = initCanvas(options);
 
@@ -274,13 +281,6 @@ const makeChartReady = async (canvas, options, outputPath) => {
         return outputPath;
     }
     return imageBuffer;
-}
-
-const initCanvas = (options) => {
-    // Create a new Chart.js chart on a virtual canvas
-    const canvas = createCanvas(options?.width || 600, options?.height || 400);
-    const ctx = canvas.getContext('2d');
-    return [ctx, canvas];
 }
 
 module.exports = {
