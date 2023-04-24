@@ -160,7 +160,6 @@ async function createPolarAreaChart(data, options = {}, outputPath = null) {
             labels: data.map(d => d.label),
             datasets: [{
                 data: data.map(d => d.value),
-                backgroundColor: options.backgroundColor || ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f'],
                 borderColor: options.borderColor || '#ffffff',
                 borderWidth: options.borderWidth || 2,
                 backgroundColor: options.backgroundDataColor || ['#FF6384', '#36A2EB', '#FFCE56', '#cc65fe', '#445ce3'],
